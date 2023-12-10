@@ -1,0 +1,23 @@
+extends layout
+
+block main
+  h2 Books in Collection
+  if books && books.length > 0
+    ul
+      each book in books
+        li #{book.title} by #{book.author}
+        form(action=`/collections/remove-from-collection/${book.id}` method="POST")
+          button(type="submit") Remove from Collection
+
+    // pagination display
+    if pageCount > 1
+      ul.pagination
+        if currentPage > 1
+          li
+            a(href=`/collections/${collectionId}/?page=${currentPage - 1}`) Previous
+        if currentPage < pageCount
+          li
+            a(href=`/collections/${collectionId}/?page=${currentPage + 1}`) Next
+  else
+    p You have no books in this collection.
+

@@ -1,0 +1,16 @@
+extends layout
+
+block main
+  h2 Edit Author
+
+  // edit Author Form
+  form(action=`/books/edit-author/${bookId}` method="POST")
+    label(for="newAuthor") New Author:
+    input(type="text" name="newAuthor" value=bookAuthor )
+    button(type="submit" class="edit-author-button") Save Changes
+
+  // Flash Messages
+  if flash.error
+    p.error= flash.error
+  if flash.success
+    p.success= flash.success

@@ -1,0 +1,16 @@
+extends layout
+
+block headerLinks
+
+  form(action="/signin" method="post")
+    label(for="username") Username
+    input(type="text" id="username" name="username" value=formData.username || "" )
+    //- if flash && flash.error && flash.error.length > 0
+    //-   p.error= flash.error[0]
+
+    label(for="password") Password
+    input(type="password" id="password" name="password" )
+    if flash && flash.error && flash.error.length > 1
+      p.error= flash.error[1]
+
+    button(type="submit") Sign In

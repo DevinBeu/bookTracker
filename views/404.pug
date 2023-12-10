@@ -1,0 +1,11 @@
+extends layout
+
+block main
+  h2 Error Page
+  if message
+    p  #{message}
+  else
+    p Something broke.
+
+  p
+    a(href="/dashboard") Go Back to Dashboard

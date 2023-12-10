@@ -1,0 +1,42 @@
+doctype html
+html(lang="en-US")
+  head
+    title Book Tracker
+    meta(charset="UTF-8")
+    link(rel="stylesheet", href="//fonts.googleapis.com/css?family=PT+Sans")
+    link(rel="stylesheet", href="/stylesheets/application.css")
+  body
+    header
+      h1 Book Tracker
+
+      // check if user is authenticated and show navbar
+      if username
+        nav.navbar
+          ul.navbar-list
+            li.navbar-item
+              a.navbar-link(href="/dashboard") My Dashboard
+            li.navbar-item
+              a.navbar-link(href="/collections?page=1") My Collections
+            li.navbar-item
+              a.navbar-link(href="/books?page=1") My Books
+            
+
+      block headerLinks
+
+    main
+      - let kinds = Object.keys(flash || {});
+      if kinds.length > 0
+        ul
+          each kind in kinds
+            each message in flash[kind]
+              li.flash(class=kind)= message
+
+      block main
+
+    footer
+      block signIn
+        if username
+          form(action="/signout" method="post")
+            fieldset.actions
+              p Signed in as #{username}.
+              button Sign Out

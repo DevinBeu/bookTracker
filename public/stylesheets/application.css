@@ -1,0 +1,222 @@
+body {
+  font-family: "PT Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #3f3f3f;
+  background-color: #ffffff;
+}
+
+header,
+main,
+footer {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.navbar {
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+.navbar h1 {
+  text-align: center;
+}
+
+.navbar-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+}
+
+.navbar-item {
+  margin-right: 20px;
+}
+
+.navbar-link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-link:hover {
+  color: #ff9900;
+}
+
+header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem 0;
+}
+
+header h1 {
+  text-align: center;
+}
+
+.flash {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.flash.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.flash.info {
+  background-color: #cce5ff;
+  color: #004085;
+  border: 1px solid #b8daff;
+}
+
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+form dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+form dt,
+form dd {
+  width: 100%;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+form input[type="text"]:focus,
+form input[type="password"]:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+a[href^="/collections/edit"],
+a[href^="/collections/delete"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  display: inline-block;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+a[href^="/collections/edit"]:hover,
+a[href^="/collections/delete"]:hover {
+  background-color: #0056b3;
+}
+
+nav {
+  padding: 10px 0;
+}
+
+nav a {
+  margin: 0 10px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #ff9900;
+}
+
+footer {
+  margin-top: 2rem;
+  border-top: 1px solid #dee2e6;
+  padding-top: 1rem;
+}
+
+ul.book-container {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.book-container li {
+  margin-bottom: 0px;
+}
+
+ul.book-container li form {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.editCollectionButton {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  display: inline-block;
+  margin: 0.5rem;
+  text-decoration: none;
+}
+
+.editCollectionButton:hover {
+  background-color: #0056b3;
+}
+
+.deleteButton {
+  background-color: #dc3545;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+.pagination {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination li {
+  margin: 0 5px;
+  display: inline-block;
+}
+
+.pagination a {
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  color: #333;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}

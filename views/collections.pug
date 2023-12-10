@@ -1,0 +1,62 @@
+extends layout
+
+block main
+  h2 My Collections!
+  p Welcome, #{username}!
+
+  if collections && collections.length > 0
+    ul
+      each collection in collections
+        li
+          a(href=`/collections/${collection.id}?page=${currentPage}`)= collection.collection_name
+          button.editCollectionButton(type="button" data-collection-id=collection.id) Edit
+
+    // Pagination links working logic
+    if pageCount > 1
+      ul.pagination
+        if currentPage > 1
+          li
+            a(href=`/collections?page=${currentPage - 1}`) Previous
+        if currentPage < pageCount
+          li
+            a(href=`/collections?page=${currentPage + 1}`) Next
+    p Total Collection: #{totalCollections}
+  else
+    p You have no collections.
+
+  button#openCreateCollectionButton Create New Collection
+  // selects the button with ID opencreatecollectionbutton and adds an event listener. When the button is clicked, it finds createCollectionmodal and changes its style, display to block which renders it to DOM
+  script.
+    const openCreateCollectionButton = document.querySelector('#openCreateCollectionButton');
+    openCreateCollectionButton.addEventListener('click', () => {
+      const createCollectionModal = document.querySelector('#createCollectionModal');
+      createCollectionModal.style.display = 'block';
+    });
+    // add an event listener button to each edit collection button. When the button is clicked, it creates a form, and and creates a get request to the collections/edit route.
+    const editCollectionButtons = document.querySelectorAll('.editCollectionButton');
+    editCollectionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const form = document.createElement('form');
+        form.method = 'GET';
+        form.action = `/collections/edit/${button.getAttribute('data-collection-id')}`;
+        document.body.appendChild(form);
+        form.submit();
+      });
+    });
+
+  #createCollectionModal.modal(style="display: none;")
+    .modal-content
+      h3 Create New Collection
+      form(action="/collections/create" method="POST")
+        label(for="collectionName") Collection Name:
+        input(type="text" name="collectionName")
+        button(type="submit") Create
+      button(type="button" onclick="closeModal()") Close New Collection
+
+  // triggered when close new collection button is clicked. it sets the create collection modal and sets its style display to none which hides it
+  script.
+    function closeModal() {
+      const createCollectionModal = document.querySelector('#createCollectionModal');
+      createCollectionModal.style.display = 'none';
+    }
+

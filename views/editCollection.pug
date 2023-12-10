@@ -1,0 +1,11 @@
+extends layout
+
+block main
+  h2 Edit Collection Name
+  form(action=`/collections/edit/${collectionId}` method="POST")
+    label(for="newCollectionName") New Collection Name:
+    input(type="text" name="newCollectionName" value=collectionName)
+    button(type="submit" class="editCollectionButton") Save
+
+  form(action=`/collections/delete/${collectionId}` method="POST")
+    button(type="submit" class="editCollectionButton deleteButton") Delete Collection

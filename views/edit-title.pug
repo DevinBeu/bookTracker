@@ -1,0 +1,16 @@
+extends layout
+
+block main
+  h2 Edit Title
+
+  // Edit Title Form
+  form(action=`/books/edit-title/${bookId}` method="POST")
+    label(for="newTitle") New Title:
+    input(type="text" name="newTitle" value=bookTitle )
+    button(type="submit" class="edit-title-button") Save Changes
+
+  // Flash Messages
+  if flash.error
+    p.error= flash.error
+  if flash.success
+    p.success= flash.success

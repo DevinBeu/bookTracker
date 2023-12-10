@@ -1,0 +1,113 @@
+//- extends layout
+
+//- block main
+//-   h2 Book Details
+
+//-   // add a form for adding a new book
+//-   h3 Add a New Book
+//-   form(action="/books/add" method="POST")
+//-     label(for="title") Title:
+//-     input(type="text" name="title" value= formData.title || '' )
+//-     label(for="author") Author:
+//-     input(type="text" name="author" value= formData.author || '' )
+//-     button(type="submit" class="add-book-button") Add Book
+
+//-   if books && books.length > 0
+//-     each book in books
+//-       ul.book-container
+//-         li Title: #{book.title}
+//-         li Author: #{book.author}
+//-         li
+//-           // Display collection information if part of a collection
+//-           | Collection: #{book.collection_id ? book.collection_name : 'Not currently added to a collection.'}
+//-         li
+//-           // edit Title Form
+//-           form(action=`/books/edit-title/${book.id}` method="GET")
+//-             button(type="submit" class="edit-title-button") Edit Title
+
+//-           // edit Author Form
+//-           form(action=`/books/edit-author/${book.id}` method="GET")
+//-             button(type="submit" class="edit-author-button") Edit Author
+
+//-           // remove Book Form
+//-           form(action=`/books/remove/${book.id}` method="POST")
+//-             button(type="submit" class="remove-book-button") Delete Book
+
+//-           // add to Collection Form
+//-           form(action="/books/add-to-collection" method="POST")
+//-             label(for=`collection-${book.id}`) Add to Collection:
+//-             select(name="collectionId" id=`collection-${book.id}`)
+//-               each collection in collections
+//-                 option(value=collection.id) #{collection.collection_name}
+//-             input(type="hidden" name="bookId" value=book.id)
+//-             button(type="submit" class="add-to-collection-button") Add to Collection
+
+//-     // Pagination links
+//-     if pageCount > 1
+//-       ul.pagination
+//-         if currentPage > 1
+//-           li
+//-             a(href=`/books?page=${currentPage - 1}`) Previous
+//-         if currentPage < pageCount
+//-           li
+//-             a(href=`/books?page=${currentPage + 1}`) Next
+//-     p Total Books: #{totalBooks}
+//-   else
+//-     p You have no books. Go ahead and add some above!
+
+extends layout
+
+block main
+  h2 Book Details
+
+  // add a form for adding a new book
+  h3 Add a New Book
+  form(action="/books/add" method="POST")
+    label(for="title") Title:
+    input(type="text" name="title" value= formData && formData.title ? formData.title : '' )
+    label(for="author") Author:
+    input(type="text" name="author" value= formData && formData.author ? formData.author : '' )
+    button(type="submit" class="add-book-button") Add Book
+
+  if books && books.length > 0
+    each book in books
+      ul.book-container
+        li Title: #{book.title}
+        li Author: #{book.author}
+        li
+          // Display collection information if part of a collection
+          | Collection: #{book.collection_id ? book.collection_name : 'Not currently added to a collection.'}
+        li
+          // edit Title Form
+          form(action=`/books/edit-title/${book.id}` method="GET")
+            button(type="submit" class="edit-title-button") Edit Title
+
+          // edit Author Form
+          form(action=`/books/edit-author/${book.id}` method="GET")
+            button(type="submit" class="edit-author-button") Edit Author
+
+          // remove Book Form
+          form(action=`/books/remove/${book.id}` method="POST")
+            button(type="submit" class="remove-book-button") Delete Book
+
+          // add to Collection Form
+          form(action="/books/add-to-collection" method="POST")
+            label(for=`collection-${book.id}`) Add to Collection:
+            select(name="collectionId" id=`collection-${book.id}`)
+              each collection in collections
+                option(value=collection.id) #{collection.collection_name}
+            input(type="hidden" name="bookId" value=book.id)
+            button(type="submit" class="add-to-collection-button") Add to Collection
+
+    // Pagination links
+    if pageCount > 1
+      ul.pagination
+        if currentPage > 1
+          li
+            a(href=`/books?page=${currentPage - 1}`) Previous
+        if currentPage < pageCount
+          li
+            a(href=`/books?page=${currentPage + 1}`) Next
+    p Total Books: #{totalBooks}
+  else
+    p You have no books. Go ahead and add some above!
